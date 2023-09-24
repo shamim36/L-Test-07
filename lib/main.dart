@@ -53,6 +53,8 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter App'),
+        backgroundColor: Colors.blueAccent,
+        foregroundColor: Colors.white,
       ),
       body: Center(
         child: Column(
@@ -72,6 +74,10 @@ class _HomepageState extends State<Homepage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      foregroundColor: Colors.white,
+                    ),
                     onPressed: () {
                       if (counter < 5) {
                         counter += 1;
@@ -87,6 +93,10 @@ class _HomepageState extends State<Homepage> {
                   width: 15,
                 ),
                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      foregroundColor: Colors.white,
+                    ),
                     onPressed: () {
                       counter = 0;
                       setState(() {});
