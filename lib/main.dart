@@ -42,11 +42,35 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  MyAlertDialog(context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Expanded(
+              child: AlertDialog(
+            title: Text(
+              "Button Pressed 5 times",
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Close'))
+            ],
+          ));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.blueAccent,
+        foregroundColor: Colors.white,
         title: Text(widget.title),
       ),
       body: Center(
@@ -63,19 +87,26 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: () {}, child: Icon(Icons.add)),
-                Padding(padding: EdgeInsets.all(5)),
-                ElevatedButton(onPressed: () {}, child: Icon(Icons.minimize)),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: _incrementCounter,
+                    child: const Icon(Icons.add)),
+                const Padding(padding: EdgeInsets.all(5)),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: _decrement,
+                    child: const Icon(Icons.remove)),
               ],
             ),
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -3,6 +3,7 @@
 Live Test 7
 
 ## Getting Started
+![img.png](img.png)
 
 This project is a starting point for a Flutter application.
 
