@@ -79,12 +79,12 @@ class _HomepageState extends State<Homepage> {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      if (counter < 5) {
-                        counter += 1;
+                      if (counter < 4) {
+                        counter++;
                         setState(() {});
                       } else {
                         MyAlertDialog(context);
-                        counter = 0;
+                        counter++;
                         setState(() {});
                       }
                     },
@@ -98,8 +98,10 @@ class _HomepageState extends State<Homepage> {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      counter = 0;
-                      setState(() {});
+                      if (counter != 0) {
+                        counter--;
+                        setState(() {});
+                      }
                     },
                     child: const Icon(Icons.remove)),
               ],
