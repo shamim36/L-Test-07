@@ -9,38 +9,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ostad Live Test 07',
-      home: const MyHomePage(title: 'Counter App'),
+    return const MaterialApp(
+      home: Homepage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class Homepage extends StatefulWidget {
+  const Homepage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (_counter != 0) {
-        _counter--;
-      }
-    });
-  }
+class _HomepageState extends State<Homepage> {
+  int counter = 0;
 
   MyAlertDialog(context) {
     return showDialog(
@@ -48,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (BuildContext context) {
           return Expanded(
               child: AlertDialog(
-            title: Text(
+            title: const Text(
               "Button Pressed 5 times",
               style: TextStyle(
                 fontSize: 25,
@@ -59,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Close'))
+                  child: const Text('Close'))
             ],
           ));
         });
@@ -69,38 +52,45 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        foregroundColor: Colors.white,
-        title: Text(widget.title),
+        title: const Text('Counter App'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             const Text(
-              'Count:',
+              "Count:",
+              style: TextStyle(
+                fontSize: 22,
+              ),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              counter.toString(),
+              style: const TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent,
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: _incrementCounter,
+                    onPressed: () {
+                      if (counter < 5) {
+                        counter += 1;
+                        setState(() {});
+                      } else {
+                        MyAlertDialog(context);
+                        counter = 0;
+                        setState(() {});
+                      }
+                    },
                     child: const Icon(Icons.add)),
-                const Padding(padding: EdgeInsets.all(5)),
+                const SizedBox(
+                  width: 15,
+                ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent,
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: _decrement,
+                    onPressed: () {
+                      counter = 0;
+                      setState(() {});
+                    },
                     child: const Icon(Icons.remove)),
               ],
             ),
